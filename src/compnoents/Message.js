@@ -23,7 +23,7 @@ export default function Message({ mail, count, messageClick, loadeMore }) {
 
     }
     return (
-        <Box xs={12} mr={1}>
+        <Box xs={12} mr={1} mb={2}>
             <Grid container  >
                 <Grid item xs={6} >
                     <Box pt={1} pb={1} border={1} display="flex"
@@ -51,10 +51,8 @@ export default function Message({ mail, count, messageClick, loadeMore }) {
                             : <Typography variant="subtitle2">
                                 Messages {<span style={{ display: "inline-block", paddingLeft: "5px", paddingRight: "5px", margin: "8px", backgroundColor: "#FFF96A" }}> {count}</span>}  of  Total (231)
                             </Typography>}
-                        <IconButton color="inherit" edge="end" style={{ position: "absolute", right: "19px" }} >
-                            <SearchIcon style={{ fontSize: "30px" }} onClick={() => setshowSearch(!showSearch)} />
-
-
+                        <IconButton color="inherit" edge="end" style={{ position: "absolute", right: "19px" }} onClick={() => setshowSearch(!showSearch)}  >
+                            <SearchIcon style={{ fontSize: "30px" }} />
                         </IconButton>
                     </Toolbar>
                 </Box>
@@ -65,7 +63,7 @@ export default function Message({ mail, count, messageClick, loadeMore }) {
                 </Box>
                 <Box display="flex" justifyContent="center" m={4} onClick={() => loadeMore()} className={classes.loadeMore}>
                     <Typography style={{ fontWeight: "900", color: "#424242" }}>
-                        lode more ....
+                        lode more ...
                     </Typography>
                 </Box>
             </Box>

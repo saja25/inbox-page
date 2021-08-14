@@ -10,29 +10,30 @@ function App() {
   const [mail, setMail] = useState();
   const [count, setCount] = useState(0);
   const [selectedMessage, setSelectedMessage] = useState();
-  const [deletedMessage, setDeletedMessage] = useState(false)
+  const [deletedMessage, setDeletedMessage] = useState([false, ""])
   useEffect(() => {
-    fetchMail().then(messages => {
+    fetchMail(count).then(messages => {
       setMail(messages.results)
-      setCount(messages.count + count)
+      setCount((preState) => preState + 5)
     });
-  }, [selectedMessage, count])
+  }, [])
   const messageClick = (selectedMessage) => {
     setSelectedMessage(selectedMessage)
   }
   const loadeMore = () => {
-    fetchMail().then(messages => {
+    fetchMail(count).then(messages => {
       setMail((preState) => [...preState, ...messages.results])
-      setCount(messages.count + count)
+      setCount((preState) => preState + 5)
+
     });
   }
   const deleteMessage = (id) => {
     deleteMail(id)
-    setDeletedMessage(!deletedMessage)
+    setDeletedMessage([true, id])
     setSelectedMessage()
   }
   return (
-    <Grid container xs={12} spacing={0} className={classes.root} justifyContent="center" >
+    <Grid container spacing={0} className={classes.root} justifyContent="center" >
       <Grid item sm={4} xs={12}>
         <Message
           mail={mail}
