@@ -3,7 +3,7 @@ import { Grid } from '@material-ui/core';
 import Message from "./compnoents/Message";
 import SingleMessageView from "./compnoents/SingleMessageView";
 import useStyles from "./styles/styles"
-import { fetchMail, deleteMail } from "./apiCall/ApiCall"
+import { fetchMail, deleteMail, retriveMessage } from "./apiCall/ApiCall"
 
 function App() {
   const classes = useStyles();
@@ -18,7 +18,13 @@ function App() {
     });
   }, [])
   const messageClick = (selectedMessage) => {
-    setSelectedMessage(selectedMessage)
+    // setSelectedMessage(selectedMessage)
+    retriveMessage(selectedMessage.id).then(
+      messages => {
+        setSelectedMessage(selectedMessage)
+      }
+    )
+
   }
   const loadeMore = () => {
     fetchMail(count).then(messages => {
